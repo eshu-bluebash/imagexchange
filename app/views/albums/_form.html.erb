@@ -1,0 +1,39 @@
+<div class="row container mx-auto">
+  <div class="d-none d-md-block col-sm-6">
+    <%=image_tag "newalbum.png", alt: "brand image",class:'img-fluid h-100'%>
+  </div>
+  <div class="col-md-6 d-flex flex-column p-0">
+    <div class="mx-auto">
+      <%= form_with model: album do |form| %>
+        <div class=" mt-1 fs-4">
+          <%= form.label :title ,class:'fw-bold'%><br>
+          <%= form.text_field :title %>
+        </div>
+        <div class="field mt-4 fs-4">
+          <%= form.label :description ,class:'fw-bold'%><br>
+          <%= form.text_area :description %><br>
+        </div>
+        <div class="field mt-4 fs-4">
+          <%= form.label :cover_image ,class:'fw-bold'%><br>
+          <%= form.file_field :cover_image %><br>
+        </div>
+        <div class="field mt-4 fs-4">
+          <%= form.label :images ,class:'fw-bold'%><br>
+          <%= form.file_field :images, multiple:true %> <br>
+        </div>
+        <div class= "field mt-4 fs-4">
+          <%= form.label :tag_ids, 'Tags',class:'fw-bold' %>
+          <%= form.select :tag_ids, options_from_collection_for_select(Tag.order(:name), :id, :name, form.object.tag_ids), { include_blank: true }, { multiple: true } %>
+        </div>
+        <br>
+        <div class="field mt-2 fs-4">
+          <%= form.check_box :publish %>
+          <%= form.label :publish%><br>
+        </div>
+        <div class="field mt-4 fs-4">
+          <%= form.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

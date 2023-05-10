@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="p-2 text-center container-md">
+    <%= search_form_for @q do |f| %>
+      <%= f.search_field :title_cont, class:'search p-2  fs-5 rounded-3', placeholder: "Album title here.." %>
+      <%= f.submit"search",class:'btn btn-dark btn-lg mb-1  mx-2'%>
+    <% end %>
+  </div>
+  <h1 class="fw-bold text-center display-5 text-capitalize mt-2">explore</h1>
+  <div class = "d-flex justify-content-center flex-wrap">
+    <% @albums.each do |album| %>
+      <small class="btn btn-dark btn-outline-light fw-bold m-2"><span class="text-decoration-none "><%= raw album.tags.map(&:name).map { |t| link_to t, tag_path(t),class:'text-decoration-none text-uppercase link-dark'}.join(', ') %></span></small>
+    <% end %>
+  </div>
+  <div class="row gx-5 gy-2">
+    <% @albums.each do |album| %>
+      <div class="card col-lg-4 col-md-6 text-center border-0 p-5 ">
+        <% if album.cover_image.attached?%>
+          <%= link_to image_tag(album.cover_image, alt: "Album link",class: 'card-img-top rounded-3'), album_path(album) %>
+        <% end %>
+        <a href = "<%= album_path(album) %>" class="text-decoration-none">
+          <div class="card-body py-2">
+            <h3 class="card-title text-uppercase text-dark fw-bold py-2 mb-1 pt-0"><%= album.title %></h5>
+            <p class="card-text text-capitalize fs-5 fst-italic blockquote-footer mb-1"><%= album.description %></p>
+          </a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

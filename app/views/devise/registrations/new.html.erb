@@ -1,0 +1,33 @@
+<div class="row container mx-auto">
+  <div class="d-none d-md-block col-md-6">
+    <%=image_tag "signup.jpg", alt: "brand image",class:'img-fluid h-100'%>
+  </div>
+  <div class="col-md-6 d-flex flex-column p-0 ">
+    <h1 class="text-center mb-2">Sign Up</h1>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mx-auto">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="field mt-2 fs-4">
+          <%= f.label :email%><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div class="field mt-4 fs-4">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+        <div class="field mt-4 fs-4">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+        <div class="actions mt-4 ">
+          <%= f.submit "Sign up",class: "btn btn-dark fs-5"  %>
+        </div>
+      <% end %>
+      <span class="d-block text-center my-3 text-muted fs-5">—Already have an account?—</span>
+      <span class="d-block text-center "> <%= render "devise/shared/links" %></span>
+    </div>
+  </div>
+</div>

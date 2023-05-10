@@ -1,0 +1,19 @@
+<div class="container" >
+  <h1 class="fw-bold text-center display-5 text-capitalize mb-3">my albums</h1>
+  <div class="row gx-5 gy-2">
+    <% @albums.each do |album| %>
+      <div class="card col-lg-4 col-md-6 text-center border-0 p-5 ">
+        <% if album.cover_image.attached?%>
+          <%= link_to image_tag(album.cover_image, alt: "Album link",class: 'card-img-top rounded-3'), album_path(album) %>
+        <% end %>
+        <div class="card-body py-2">
+          <a href = "<%= album_path(album) %>" class="text-decoration-none">
+            <h3 class="card-title text-uppercase text-dark fw-bold py-2 mb-1 pt-0"><%= album.title %></h5>
+            <p class="card-text text-capitalize fs-5 fst-italic blockquote-footer mb-1"><%= album.description %></p>
+          </a>
+          <%= link_to 'Delete Album',album_path(album), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},class: 'btn btn-dark' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

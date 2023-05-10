@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light p-0" id="neubar">
+  <div class="container d-flex">
+    <%= link_to image_tag("logo.png", alt: "brand image",class: 'logo'), root_path, :class=>'navbar-brand ' %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class=" collapse navbar-collapse " id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <%= link_to "New Album", new_album_path, :class=>'nav-link mx-2  fs-3 ' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "MyAlbums", myalbums_path, :class=>'nav-link mx-2 fs-3 ' %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'SignOut', destroy_user_session_path, data: {turbo_method: :delete,  turbo_confirm: "Are you sure?"},:class=>'nav-link mx-2  fs-3' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'EditProfile', edit_user_registration_path, class: 'nav-link mx-2 fs-3' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Signin', new_user_session_path, :class=>'nav-link mx-2 fs-3 '%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Signup', new_user_registration_path, class:'nav-link mx-2 fs-3' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

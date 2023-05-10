@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 mb-3  ">
+      <h1 class=" fw-bold text-uppercase display-3"><%=@album.title %></h1>
+      <p class=" text-capitalize fst-italic fs-4 text-break"><%= @album.description %></p>
+      <% if current_user == @album.user %>
+        <%= link_to "Edit album",edit_album_path,class: 'btn btn-dark text-capitalize mx-1'%>
+        <%= link_to "Delete album", url_for(controller: 'albums', action: 'destroy'),data: { turbo_method: :delete,  turbo_confirm: "Are you sure?"},class: 'btn btn-dark text-capitalize' %>
+      <% end %>
+    </div>
+    <div class="col-sm-4 text-center d-flex flex-column align-items-center col-xs-none ">
+      <% if @album.cover_image.attached?%>
+        <%= image_tag @album.cover_image, class:'rounded-3 cover mb-2'%>
+        <%= link_to "download cover", rails_blob_path(@album.cover_image, disposition: 'attachment'),class: 'btn btn-dark text-capitalize' %>
+      <% end %>
+    </div>
+  </div>
+  <% if @album.images.attached?%>
+    <div class="row gx-5 gy-2 mt-5">
+      <% @album.images.each do |img| %>
+        <div class="card col-lg-4 col-md-6  border-0 p-4 ">
+          <%= image_tag img,class: 'card-img-top rounded-3' %>
+          <div class="card-body py-2 text-center">
+            <%if current_user == @album.user %>
+              <%= link_to "Delete", del_album_img_path(id: @album.id, image_id: img.id),data: { turbo_method: :delete, turbo_confirm: "Are you sure?"},class: 'btn btn-dark text-capitalize mx-1' %>
+            <%end %>
+            <%= link_to "download", rails_blob_path(img, disposition: 'attachment'),class: 'btn btn-dark text-capitalize'  %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
