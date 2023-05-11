@@ -7,11 +7,11 @@
       <%= form_with model: album do |form| %>
         <div class=" mt-1 fs-4">
           <%= form.label :title ,class:'fw-bold'%><br>
-          <%= form.text_field :title %>
+          <%= form.text_field :title,class:'form-control-lg' %>
         </div>
         <div class="field mt-4 fs-4">
           <%= form.label :description ,class:'fw-bold'%><br>
-          <%= form.text_area :description %><br>
+          <%= form.text_area :description,class:'form-control-lg' %><br>
         </div>
         <div class="field mt-4 fs-4">
           <%= form.label :cover_image ,class:'fw-bold'%><br>

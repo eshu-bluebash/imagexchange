@@ -9,33 +9,32 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <div class="field mt-3 fs-4  ">
           <%= f.label :email,class:'fw-bold'%><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-control border-dark shadow-none'%>
         </div>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
         <div class="field mt-3 fs-4 ">
           <%= f.label :password,class:'fw-bold' %> <i class="fs-6">(leave blank if you don't want to change it)</i><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, autocomplete: "new-password",class:'form-control border-dark shadow-none m-1' %>
           <% if @minimum_password_length %>
-            <br />
-            <em class="fs-5" ><%= @minimum_password_length %> characters minimum</em>
+            <em class="fs-5 m-1" ><%= @minimum_password_length %> characters minimum</em>
           <% end %>
         </div>
         <div class="field mt-3 fs-4 fw-bold ">
           <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",class:'form-control border-dark shadow-none' %>
         </div>
         <div class="field mt-3 fs-4">
-          <%= f.label :current_password, class:'fw-bold' %> <i class="fs-6" >(we need your current password to confirm your changes)</i><br />
-          <%= f.password_field :current_password, autocomplete: "current-password" %>
+          <%= f.label :current_password, class:'fw-bold' %> <i class="fs-6" >(To confirm your changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password",class:'form-control border-dark shadow-none' %>
         </div>
         <div class="actions mt-3 ">
           <%= f.submit "Update",class: "btn btn-dark fs-6" %>
         </div>
       <% end %>
       <div class="mb-3 d-flex flex-column align-items-center">
-        <span class="d-block my-3 text-muted fs-5">—Want to delete account?—</span>
+        <span class="d-block my-3 text-muted fs-6 ">—Want to delete account?—</span>
         <%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete ,class: "btn btn-dark fs-6  d-block" %>
       </div>
       <%= link_to "Back", :back ,class:'fs-6 btn btn-dark'%>
