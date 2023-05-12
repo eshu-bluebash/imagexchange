@@ -9,15 +9,15 @@
   <div class = "d-flex justify-content-center flex-wrap">
     <% tag_done = []%>
     <% @albums.each do |album| %>
-      <!--<small class="btn btn-dark btn-outline-light fw-bold m-2"><span class="text-decoration-none ">
-      <%= raw album.tags.map(&:name).map { |t| link_to t, tag_path(t),class:'text-decoration-none text-uppercase link-dark'}.join(', ') %>
-      </span></small>-->
       <% album.tags.each do |tag| %>
         <% if !tag_done.include?(tag.name) %>
           <%= link_to tag.name, tag_path(tag.name), class: "text-uppercase btn btn-dark btn-outline-light fw-bold m-2" %>
           <% tag_done.push(tag.name) %>
         <%end%>
       <% end %>
+      <!--<small class="btn btn-dark btn-outline-light fw-bold m-2"><span class="text-decoration-none ">
+      <%= raw album.tags.map(&:name).map { |t| link_to t, tag_path(t),class:'text-decoration-none text-uppercase link-dark'}.join(', ') %>
+      </span></small>-->
     <% end %>
   </div>
   <div class="row gx-5 gy-2">

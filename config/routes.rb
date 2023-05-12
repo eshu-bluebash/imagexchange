@@ -10,6 +10,3 @@ Rails.application.routes.draw do
   root 'albums#index'
   get 'tags/:tag', to: 'albums#index', as: 'tag'
 end
-#  def after_sign_in_path_for(resource)
-#     myalbums_path
-#  end
